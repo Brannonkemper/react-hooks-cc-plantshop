@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import PlantPage from "./PlantPage";
 
@@ -7,7 +7,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/plants")
+    fetch("http://localhost:6001/plants")
       .then((response) => response.json())
       .then((data) => setPlants(data));
   }, []);
@@ -23,9 +23,15 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <PlantPage addPlant={addPlant} setSearchTerm={setSearchTerm} plants={filteredPlants} />
+      <PlantPage
+        plants={filteredPlants}
+        addPlant={addPlant}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
     </div>
   );
 }
 
 export default App;
+

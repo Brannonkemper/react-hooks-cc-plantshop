@@ -17,21 +17,20 @@ function NewPlantForm({ addPlant }) {
     const newPlant = {
       name: formData.name,
       image: formData.image,
-      price: parseFloat(formData.price), // Ensure the price is a number
+      price: formData.price,  // Keep as string for the request
     };
 
-    // POST request to add the new plant
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "Application/JSON",
       },
       body: JSON.stringify(newPlant),
     })
       .then((response) => response.json())
       .then((data) => {
-        addPlant(data); // Add the new plant to the list
-        setFormData({ name: "", image: "", price: "" }); // Reset the form
+        addPlant(data);
+        setFormData({ name: "", image: "", price: "" });
       });
   };
 
@@ -68,5 +67,3 @@ function NewPlantForm({ addPlant }) {
 }
 
 export default NewPlantForm;
-
-
